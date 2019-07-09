@@ -52,8 +52,9 @@ class DepartmentController extends Controller
     public function show($id)
     {
         $dept = department::find($id);
+        $dep = department::all();
 
         $count_user = ($dept->employee->count() * 100 )/($dept->employee_number);
-        return view('department', compact('dept', 'count_user'));
+        return view('department', compact('dept', 'count_user', 'dep'));
     }
 }

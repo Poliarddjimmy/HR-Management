@@ -53,12 +53,7 @@
                                 <table class="table table-hover js-basic-example dataTable table-custom table-striped m-b-0 c_list">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>
-                                                <label class="fancy-checkbox">
-                                                    <input class="select-all" type="checkbox" name="checkbox">
-                                                    <span></span>
-                                                </label>
-                                            </th>
+                                            <th>Details</th>
                                             <th>Name</th>
                                             <th>Code</th>
                                             <th>Description</th>
@@ -71,15 +66,11 @@
                                     @foreach($dept as $dept)
                                         <tr>
                                             <td class="width45">
-                                            <label class="fancy-checkbox">
-                                                    <input class="checkbox-tick" type="checkbox" name="checkbox">
-                                                    <span></span>
-                                                </label>
+                                                <a href="/department/{{ $dept->id}}"><i class="icon-list details"></i></a>
                                                 <!-- <img src="../assets/images/xs/avatar1.jpg." class="rounded-circle avatar" alt=""> -->
-                                                <button type="button" class="btn btn-sm btn-outline-secondary" title="Edit"><i class="fa fa-edit"></i></button>
                                             </td>
                                             <td>
-                                                <h6 class="mb-0"><a href="/department/{{ $dept->id}}">{{$dept->dept_name}}</a></h6>
+                                                <h6 class="mb-0">{{$dept->dept_name}}</h6>
                                                 <!-- <span>marshall-n@gmail.com</span> -->
                                             </td>
                                             <td><span>{{$dept->dept_code}}</span></td>
@@ -100,57 +91,6 @@
     </div>
 
     <!-- Default Size -->
-<div class="modal animated zoomIn" id="adddepartment" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="title" id="defaultModalLabel">Add Department</h6>
-            </div>
-            <form action="/department" method="post">
-                <div class="modal-body">
-                
-                    {{ csrf_field() }}
-                    <div class="row clearfix">
-                        <div class="col-md-12">
-                            <div class="form-group">                                    
-                                <input type="text" name="dept_name" class="form-control" placeholder="Department name">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">                                    
-                                <input type="text" name="dept_code" class="form-control" placeholder="Department code">
-                            </div>
-                        </div>
 
-                        
-                        <div class="col-md-12">
-                            <div class="form-group">                                    
-                                <input type="number" name="employee_number" class="form-control" placeholder="Employee's quantity">
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="form-group">                             
-                                <textarea id="summernote" type="number" name="dept_description" class="form-control" placeholder="Department description"></textarea>
-                            </div>
-                        </div>   
-                        <!-- <div class="col-12">
-                            <div class="form-group">                                            
-                                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-                                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-                            </div>
-                            <hr>
-                        </div> -->
-                    </div>
-                
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Add</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
     @endsection

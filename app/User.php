@@ -41,6 +41,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('HrManagement\department');
     }
+    
+    public function position()
+    {
+        return $this->hasMany('HrManagement\position');
+    }
 
     public function dept()
     {

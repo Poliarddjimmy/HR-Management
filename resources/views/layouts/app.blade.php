@@ -12,12 +12,16 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- VENDOR CSS -->
 
+
+
 <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}">
 
 <link rel="stylesheet" href="{{ asset('assets/vendor/chartist/css/chartist.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendor/toastr/toastr.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('assets/vendor/summernote/dist/summernote.css') }}"/>
 
 
 <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert/sweetalert.css') }}"/>
@@ -26,6 +30,10 @@
 <!-- MAIN CSS -->
 <link rel="stylesheet" href=" {{ asset('app/assets/css/main.css') }}">
 <link rel="stylesheet" href=" {{ asset('app/assets/css/color_skins.css') }}">
+
+
+
+<style> .details{font-size:24px;} </style>
 </head>
 <body class="theme-orange">
 
@@ -255,9 +263,8 @@
                     <nav class="sidebar-nav">
                         <ul class="main-menu metismenu">
                             <li><a href="/employee/create"><i class="icon-plus"></i><span>New employee</span></a></li>
-                            <li><a href="app-inbox.html"><i class="icon-plus"></i>New department</a></li>
-                            <li><a href="app-chat.html"><i class="icon-plus"></i>New taks</a></li>   
-                            <li><a href="app-chat.html"><i class="icon-plus"></i>New Position</a></li>                          
+                            <li><a data-toggle="modal" data-target="#adddepartment" href="javascript:void(0);"><i class="icon-plus"></i>New department</a></li>
+                            <li><a data-toggle="modal" data-target="#addposition" href="javascript:void(0);"><i class="icon-plus"></i>New Position</a></li>                          
                         </ul>                        
                     </nav>                    
                 </div>
@@ -458,6 +465,60 @@
 
         <main class="py-4">
             @yield('content')
+
+
+            <div class="modal animated zoomIn" id="adddepartment" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="title" id="defaultModalLabel">Add Department</h6>
+                        </div>
+                        <form action="/department" method="post">
+                            <div class="modal-body">
+                            
+                                {{ csrf_field() }}
+                                <div class="row clearfix">
+                                    <div class="col-md-12">
+                                        <div class="form-group">                                    
+                                            <input type="text" name="dept_name" class="form-control" placeholder="Department name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">                                    
+                                            <input type="text" name="dept_code" class="form-control" placeholder="Department code">
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group">                                    
+                                            <input type="number" name="employee_number" class="form-control" placeholder="Employee's quantity">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">                             
+                                            <textarea id="summernote" type="text" name="dept_description" class="form-control" placeholder="Department description"></textarea>
+                                        </div>
+                                    </div>   
+                                    <!-- <div class="col-12">
+                                        <div class="form-group">                                            
+                                            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                                            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                                        </div>
+                                        <hr>
+                                    </div> -->
+                                </div>
+                            
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Add</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </div>
@@ -488,7 +549,12 @@
 
 <script src="asset('app/assets/js/pages/tables/jquery-datatable.js') }}"></script>
 <script src="asset('app/assets/js/pages/ui/dialogs.js') }}"></script>
-</body>
+<script src="{ asset('assets/vendor/summernote/dist/summernote.js') }}"></script>
+
+<script src="{{ asset('assets/vendor/ckeditor/ckeditor.js') }}"></script> <!-- Ckeditor --> 
+<script src="{{ asset('app/assets/js/pages/forms/editors.js') }}"></script>
+
+
 </html>
 
 

@@ -22,6 +22,6 @@ class assignment_task extends Model
 
     public function division()
     {
-        return $this->belongsTo('HrManagement\division');
+        return $this->hasOneThrough('HrManagement\division', 'HrManagement\position');
     }
 }

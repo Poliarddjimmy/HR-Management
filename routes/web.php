@@ -18,3 +18,5 @@ Route::resource('/home', 'HomeController');
 Route::resource('/department', 'DepartmentController');
 Route::resource('/division', 'DivisionController');
 Route::resource('/employee', 'EmployeeController');
+Route::resource('/position', 'PositionController');
+Route::resource('/task', 'TaskController');

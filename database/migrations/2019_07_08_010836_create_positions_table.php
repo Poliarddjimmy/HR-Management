@@ -17,9 +17,10 @@ class CreatePositionsTable extends Migration
             $table->engine = ' MyISAM';
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->integer('department_id');
+            $table->integer('division_id');
             $table->string('pos_name');
             $table->string('pos_code');
+            $table->string('_token');
             $table->timestamps();
         });
     }

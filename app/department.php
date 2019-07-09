@@ -10,7 +10,7 @@ class department extends Model
         'dept_name','dept_code', 'dept_description','_token', 'employee_number',
     ];
 
-    public function creator()
+    public function user() 
     {
         return $this->belongsTo('HrManagement\user');
     }
@@ -18,6 +18,11 @@ class department extends Model
     public function employee()
     {
         return $this->hasManyThrough('HrManagement\user', 'HrManagement\division');
+    }
+
+    public function position()
+    {
+        return $this->hasManyThrough('HrManagement\position', 'HrManagement\division');
     }
 
     public function division()

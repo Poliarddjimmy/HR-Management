@@ -18,12 +18,12 @@ class CreateAssignmentTasksTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('position_id');
-            $table->integer('department_id');
-            $table->integer('division_id');
             $table->string('task_name');
-            $table->string('task_code');
             $table->string('task_description');
+            $table->string('_token');
             $table->timestamps();
+
+            $table->foreign('position_id')->references('id')->on('position')->onDelete('cascade');
         });
     }
 

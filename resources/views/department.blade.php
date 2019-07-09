@@ -143,23 +143,41 @@
                                 Division
                                 <a href="javascript:void(0);" class="btn btn-info pull-right" data-toggle="modal" data-target="#adddivision" style="margin-top:-10px;">Add New</a>
                             </h2>
-                            <hr>
-                            @foreach($dept->division as $div)
-                            <!-- <div class="col-lg-3 col-md-12 btn btn-outline-warning" style="padding:30px; height:100px; margin-right:20px;">
-                                {{ $div->div_name}}
-                            </div> -->
-
-                            <div class="card col-lg-4 col-md-12" style="margin-right:px; height:250px; float:left;">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $div->div_name}}</h5>
-                                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-                                    <p class="card-text">{{ $div->div_description}}.</p>
-                                    <a href="#" class="card-link">Card link</a>
-                                    <a href="#" class="card-link">Another link</a>
-                                </div>
+                            
+                            <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-hover js-basic-example dataTable table-custom table-striped m-b-0 c_list">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>
+                                                Details
+                                            </th>
+                                            <th>Name</th>
+                                            <th>Code</th>
+                                            <th>Description</th>
+                                            <th>Created date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($dept->division as $div)
+                                        <tr>
+                                            <td class="width45">
+                                            <a href="/division/{{ $div->id}}"><i class="icon-list details"></i></a>
+                                            </td>
+                                            <td>
+                                                <h6 class="mb-0">{{$div->div_name}}</h6>
+                                                <!-- <span>marshall-n@gmail.com</span> -->
+                                            </td>
+                                            <td><span>{{$div->div_code}}</span></td>
+                                            <td><span>{{$div->div_description}}</span></td>
+                                            <td>{{$div->created_at}}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
 
-                            @endforeach
                         </div>
                         <div class="body">
                                                     
@@ -296,11 +314,19 @@
                             <div class="form-group">                                    
                                 <input type="text" name="div_code" class="form-control" placeholder="Division code">
                                 <input type="hidden" name="department_id" value="{{ $dept->id }}">
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             </div>
                         </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">                                    
+                                <input type="number" name="qty_employee" class="form-control" placeholder="Quantity employee here">
+                            </div>
+                        </div>
+
                         <div class="col-12">
                             <div class="form-group">                              
-                                <textarea id="summernote" type="number" name="div_description" class="form-control" placeholder="Department description"></textarea>
+                                <textarea id="summernote" type="number" name="div_description" class="form-control" placeholder="Division description"></textarea>
                             </div>
                         </div>   
                         <!-- <div class="col-12">
@@ -321,4 +347,56 @@
         </div>
     </div>
 </div>
+
+
+
+<div class="modal animated zoomIn" id="addposition" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="title" id="defaultModalLabel">Add Position</h6>
+            </div>
+            <form action="/position" method="post">
+                <div class="modal-body">
+                
+                    {{ csrf_field() }}
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <div class="form-group">                                    
+                                <input type="text" name="pos_name" class="form-control" placeholder="Position's name here">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">                                    
+                                <input type="text" name="pos_code" class="form-control" placeholder="Position's code here">
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-md-12">
+                            <div class="form-group">                                    
+                                <select name="division_id" id="" class="form-control" required>
+                                    <option value="">Choose a division here</option>
+                                    <option value="{{$dept->id}}">All</option>
+                                    @foreach($dept->division as $div)
+                                    <option value="{{$div->id}}">{{$div->div_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+  
+                    </div>
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
     @endsection

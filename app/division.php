@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class division extends Model
 {
     protected $fillable = [
-        'div_name','div_code', 'div_description','_token', 'user_id', 'department_id'
+        'div_name','div_code', 'div_description','_token', 'user_id', 'department_id', 'qty_employee'
     ];
 
-    public function creator()
+    public function user()
     {
         return $this->belongsTo('HrManagement\user');
     }
@@ -23,7 +23,7 @@ class division extends Model
 
     public function task()
     {
-        return $this->hasMany('HrManagement\assignment_task');
+        return $this->hasManyThrough('HrManagement\assignment_task', 'HrManagement\position');
     }
 
     public function department()
